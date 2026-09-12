@@ -96,6 +96,30 @@ Practice has no runtime dependency on Yams and includes the ActionTape license.
 The Studio bundle includes all third-party notices it uses. Both pass the same
 bundle metadata, executable, and icon verifier.
 
+## Complete local preview archive
+
+To assemble Studio, Practice, the CLI, examples, licenses, and a standalone
+first-run guide in one ZIP:
+
+```bash
+bash scripts/package-preview.sh
+```
+
+The default output is
+`outputs/ActionTape-VERSION-ARCH-source-preview.zip`, accompanied by its
+`.zip.sha256` file. The script builds fresh products through the existing app
+packagers, verifies bundle resources and executable architecture, and checks
+archive integrity before moving the archive into place. It defaults to the
+checked-in source version, `release` configuration, and a dedicated
+`.build/preview` scratch directory. The same `ACTIONTAPE_*` options described
+above apply, and an optional argument selects the output directory.
+
+Each run stages a new package so app backups never enter the archive. If the
+same archive or checksum already exists, it is preserved in a uniquely named
+`ActionTape-preview-previous.*` directory. Existing unpacked output folders are
+untouched. This is a local development bundle, not signed or notarized
+distribution; [dev-bundle.md](dev-bundle.md) is copied as `START-HERE.md`.
+
 ## Manual launch and permissions check
 
 Before claiming a runnable build has been verified, copy the app outside the
