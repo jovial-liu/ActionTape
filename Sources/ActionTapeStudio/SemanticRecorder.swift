@@ -121,13 +121,18 @@ final class SemanticRecorder {
         guard AXUIElementGetPid(element, &elementPID) == .success, elementPID == pid else { return }
         let role = string(element, kAXRoleAttribute)
         let title = string(element, kAXTitleAttribute)
-        let identifier = string(element, kAXIdentifierAttribute)
+        let identifier = portableIdentifier(string(element, kAXIdentifierAttribute), role: role)
         let description = string(element, kAXDescriptionAttribute)
         var ancestry: [LocatorAncestor] = []
         cursor = element
         for _ in 0..<4 {
             guard let parent = parent(of: cursor) else { break }
-            let ancestor = LocatorAncestor(identifier: string(parent, kAXIdentifierAttribute), role: string(parent, kAXRoleAttribute), title: string(parent, kAXTitleAttribute))
+            let ancestorRole = string(parent, kAXRoleAttribute)
+            let ancestor = LocatorAncestor(
+                identifier: portableIdentifier(string(parent, kAXIdentifierAttribute), role: ancestorRole),
+                role: ancestorRole,
+                title: string(parent, kAXTitleAttribute)
+            )
             if ancestor.hasCriteria { ancestry.append(ancestor) }
             cursor = parent
         }
@@ -143,6 +148,19 @@ final class SemanticRecorder {
         guard AXUIElementCopyAttributeValue(element, attribute as CFString, &value) == .success,
               let text = value as? String, !text.isEmpty else { return nil }
         return text
+    }
+
+    private func portableIdentifier(_ identifier: String?, role: String?) -> String? {
+        guard let identifier, role != "AXWindow" else { return nil }
+        // SwiftUI synthesizes window/type identities containing process-specific context
+        // addresses and instance numbers. Keep window role/title for disambiguation, and
+        // retain explicit control identifiers such as "prepare-button" across app restarts.
+        guard !identifier.hasPrefix("SwiftUI."),
+              !identifier.contains("(unknown context at $"),
+              identifier.range(of: #"\$[0-9a-fA-F]{6,}"#, options: .regularExpression) == nil else {
+            return nil
+        }
+        return identifier
     }
 
     private func parent(of element: AXUIElement) -> AXUIElement? {
