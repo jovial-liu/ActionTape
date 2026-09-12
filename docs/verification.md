@@ -50,9 +50,10 @@ bash scripts/test-cli.sh .build/debug/actiontape
 ```
 
 The GitHub workflow is configured to run these checks and package both native
-apps. Hosted CI has not yet been verified for this release. Inspect the
-repository's Actions result for the relevant commit before claiming a passing
-hosted run.
+apps. Run [34677686942](https://github.com/jovial-liu/ActionTape/actions/runs/34677686942)
+passed on a macOS 15 runner in 1m22s for commit `dc9970c`, including the offline
+build, tests, examples, and both app verifiers. Inspect later Actions runs when
+evaluating subsequent changes.
 
 ## Still outside this evidence
 

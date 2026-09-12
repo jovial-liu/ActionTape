@@ -6,6 +6,7 @@
   <p>
     <img alt="macOS 14+" src="https://img.shields.io/badge/macOS-14%2B-111111?logo=apple">
     <img alt="Swift 6" src="https://img.shields.io/badge/Swift-6-F05138?logo=swift&logoColor=white">
+    <a href="https://github.com/jovial-liu/ActionTape/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/jovial-liu/ActionTape/actions/workflows/ci.yml/badge.svg?branch=main"></a>
     <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/license-MIT-2ea44f"></a>
     <img alt="No LLM required" src="https://img.shields.io/badge/runtime-no%20LLM-6f42c1">
   </p>
