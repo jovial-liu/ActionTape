@@ -1,5 +1,9 @@
 import AppKit
-import ApplicationServices
+// AXUIElement is a Core Foundation handle. Older macOS SDKs annotate parts of
+// ApplicationServices with a global actor, even though all handles are kept
+// inside this serial driver actor. Importing it pre-concurrency preserves that
+// ownership boundary across the macOS 14/15 SDK combination.
+@preconcurrency import ApplicationServices
 import Foundation
 
 /// The small driver surface used by the runner. Implementations must cooperate with cancellation:
