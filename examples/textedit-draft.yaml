@@ -1,0 +1,58 @@
+formatVersion: 1
+name: Write a TextEdit draft
+description: >-
+  English-language macOS example. It creates an unsaved draft and
+  intentionally does not invoke Save.
+variables:
+  body:
+    default: |-
+      Hello from ActionTape.
+
+      This draft was produced from semantic Accessibility locators.
+    required: false
+    secret: false
+    description: Synthetic text to place in the new document.
+steps:
+  - id: open-textedit
+    name: Activate TextEdit
+    action: activateApp
+    app:
+      bundleIdentifier: com.apple.TextEdit
+
+  - id: create-document
+    name: Create a new document
+    action: hotKey
+    hotKey:
+      key: n
+      modifiers: [command]
+
+  - id: wait-for-editor
+    name: Wait for the editor
+    action: waitFor
+    locator:
+      role: AXTextArea
+      ancestry:
+        - role: AXScrollArea
+        - role: AXWindow
+    timeout: 8
+    retry:
+      maxAttempts: 3
+      delay: 0.25
+
+  - id: write-draft
+    name: Set the document text
+    action: setValue
+    locator:
+      role: AXTextArea
+      ancestry:
+        - role: AXScrollArea
+        - role: AXWindow
+    value: "{{ body }}"
+
+  - id: verify-editor-remains
+    name: Assert that the editor still exists
+    action: assertExists
+    locator:
+      role: AXTextArea
+      ancestry:
+        - role: AXWindow

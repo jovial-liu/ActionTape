@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    name: Offline Swift build, tests, and app assembly
+    runs-on: macos-15
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Show toolchain
+        run: swift --version
+
+      # Checkout and runner provisioning need the network; the source build,
+      # tests, and example validation below explicitly cannot use it.
+      - name: Build, test, and validate examples without network access
+        run: bash ./scripts/check-offline-build.sh
+
+      - name: Assemble development app bundle
+        run: ./scripts/package-app.sh
+
+      - name: Verify packaged resources without the build-directory fallback
+        run: swift ./scripts/verify-app.swift .build/artifacts/ActionTape.app
+
+      - name: Assemble the in-memory Practice app
+        run: bash ./scripts/package-practice-app.sh
+
+      - name: Verify Practice app bundle
+        run: swift ./scripts/verify-app.swift 'dist/ActionTape Practice.app'

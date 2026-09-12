@@ -1,0 +1,78 @@
+name: Bug report
+description: Report reproducible incorrect behavior using synthetic data.
+title: "[Bug]: "
+labels: [bug, needs-triage]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. Remove secrets, private window titles, and personal data from tapes, traces, and screenshots. Use the Security Advisory flow for vulnerabilities.
+  - type: input
+    id: version
+    attributes:
+      label: ActionTape version or commit
+      placeholder: v0.x.y or commit SHA
+    validations:
+      required: true
+  - type: input
+    id: macos
+    attributes:
+      label: macOS and Mac
+      placeholder: macOS 14.6, Apple silicon
+    validations:
+      required: true
+  - type: input
+    id: target
+    attributes:
+      label: Target application
+      description: Include its version and whether it is native, Catalyst, Electron, or web-based if known.
+      placeholder: Notes 14.x
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction
+      description: Provide the smallest safe tape and exact command when possible.
+      placeholder: |
+        1. Run `...`
+        2. Select `...`
+        3. Observe `...`
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: dropdown
+    id: permission
+    attributes:
+      label: Accessibility permission
+      options:
+        - Granted
+        - Not granted
+        - Unknown
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Sanitized logs or context
+      description: Drag in sanitized artifacts only. Do not upload raw private traces.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Safety check
+      options:
+        - label: I removed credentials and personal information from this report.
+          required: true
+        - label: This is not a vulnerability report.
+          required: true

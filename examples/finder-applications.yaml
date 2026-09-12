@@ -1,0 +1,36 @@
+formatVersion: 1
+name: Open Applications in Finder
+description: >-
+  English-language macOS example using a keyboard command and semantic window
+  assertion. It does not modify files.
+steps:
+  - id: activate-finder
+    action: activateApp
+    app:
+      bundleIdentifier: com.apple.finder
+
+  - id: open-applications
+    name: Open the Applications folder
+    action: hotKey
+    hotKey:
+      key: a
+      modifiers: [command, shift]
+
+  - id: wait-for-applications-window
+    action: waitFor
+    locator:
+      role: AXWindow
+      title: Applications
+    timeout: 8
+    retry:
+      maxAttempts: 3
+      delay: 0.4
+
+  - id: assert-file-list
+    action: assertExists
+    locator:
+      role: AXOutline
+      ancestry:
+        - role: AXScrollArea
+        - role: AXWindow
+          title: Applications

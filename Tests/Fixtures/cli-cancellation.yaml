@@ -1,0 +1,10 @@
+formatVersion: 1
+name: CLI cancellation fixture
+steps:
+  - id: waiting
+    action: pause
+    duration: 30
+    timeout: 60
+  - id: must-not-run
+    action: pause
+    duration: 0.01

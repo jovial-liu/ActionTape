@@ -1,0 +1,15 @@
+.DS_Store
+.build/
+.swiftpm/
+DerivedData/
+*.xcuserstate
+*.xccheckout
+*.moved-aside
+*.dmg
+*.zip
+build/
+dist/
+.env
+work/
+outputs/
+work-actiontape-*.png

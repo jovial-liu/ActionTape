@@ -1,0 +1,51 @@
+formatVersion: 1
+name: Create a synthetic demo note
+description: >-
+  English-language Notes example. Notes may sync through the account configured
+  on this Mac, so use synthetic content only.
+variables:
+  noteText:
+    default: "ActionTape demo — safe synthetic text"
+    required: false
+    secret: false
+    description: Synthetic note content; never place a credential here.
+steps:
+  - id: activate-notes
+    action: activateApp
+    app:
+      bundleIdentifier: com.apple.Notes
+
+  - id: create-note
+    name: Create a note with the app shortcut
+    action: hotKey
+    hotKey:
+      key: n
+      modifiers: [command]
+
+  - id: wait-for-note-editor
+    action: waitFor
+    locator:
+      role: AXTextArea
+      ancestry:
+        - role: AXWindow
+    timeout: 8
+
+  - id: enter-demo-text
+    action: setValue
+    locator:
+      role: AXTextArea
+      ancestry:
+        - role: AXWindow
+    value: "{{noteText}}"
+
+  - id: settle
+    name: Allow the application to update its UI
+    action: pause
+    duration: 0.3
+
+  - id: assert-note-editor
+    action: assertExists
+    locator:
+      role: AXTextArea
+      ancestry:
+        - role: AXWindow

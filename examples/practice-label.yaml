@@ -1,0 +1,35 @@
+formatVersion: 1
+name: Prepare a practice label
+description: >-
+  Uses ActionTape Practice, the included in-memory test app. Nothing is sent,
+  saved, or purchased. Build and open the Practice app before running this tape.
+variables:
+  recipient:
+    default: Ada Lovelace
+    required: false
+    secret: false
+    description: Synthetic recipient for the in-memory label preview.
+steps:
+  - id: activate-practice
+    action: activateApp
+    app:
+      bundleIdentifier: com.jovial-liu.ActionTape.Practice
+
+  - id: enter-recipient
+    action: setValue
+    locator:
+      role: AXTextField
+      identifier: recipient-field
+    value: "{{recipient}}"
+
+  - id: prepare-label
+    action: press
+    locator:
+      role: AXButton
+      identifier: prepare-button
+
+  - id: verify-prepared
+    action: assertExists
+    locator:
+      role: AXStaticText
+      identifier: prepared-status

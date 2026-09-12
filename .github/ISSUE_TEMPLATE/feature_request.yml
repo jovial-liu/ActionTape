@@ -1,0 +1,37 @@
+name: Feature request
+description: Propose an automation, trace, or developer-experience improvement.
+title: "[Feature]: "
+labels: [enhancement, needs-triage]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What macOS workflow is difficult today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Describe observable behavior, including failure handling.
+    validations:
+      required: true
+  - type: textarea
+    id: semantics
+    attributes:
+      label: Accessibility semantics
+      description: Which identifiers, roles, labels, or hierarchy could locate the UI without coordinates?
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: checkboxes
+    id: invariants
+    attributes:
+      label: Project invariants
+      options:
+        - label: The proposal can remain deterministic without an LLM dependency.
+          required: true
+        - label: The proposal does not require coordinate-based replay.
+          required: true
