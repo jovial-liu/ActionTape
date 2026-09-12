@@ -25,10 +25,11 @@ example-validation process. SwiftPM's nested manifest sandbox is disabled only
 inside this outer network-denying sandbox. No target application is controlled.
 The temporary outputs are removed when the check exits.
 
-GitHub Actions uses a macOS runner with Swift 6 to run that same check. Checkout,
-runner provisioning, and GitHub itself are not offline; the check establishes
-the narrower claim that an existing source checkout builds and tests without
-dependency downloads.
+The GitHub Actions configuration is set up to run the same check on a macOS
+runner. Hosted results must be verified for the relevant commit; a workflow
+file alone does not establish a passing run. Checkout and runner provisioning
+need the network. The local check establishes that an existing source checkout
+builds and tests without dependency downloads.
 
 ## Bundle layout
 
@@ -106,7 +107,7 @@ separates a real relocated-app launch from the headless packaging checks.
 Then, in an interactive test account, inspect the permission-denied experience
 and grant Accessibility access only to that exact build before a synthetic
 replay. Record the tested macOS, architecture, and target-app versions. This
-repository's CI does not establish cross-application compatibility.
+repository's automated checks do not establish cross-application compatibility.
 
 Do not disable Gatekeeper globally. A local development bundle is not a
 Developer ID-signed or notarized release; signing and distribution remain

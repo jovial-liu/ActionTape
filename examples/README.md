@@ -56,5 +56,5 @@ Initial UI state matters: the Finder example's `AXOutline` assumes list view;
 TextEdit may show a document chooser and uses your configured document format;
 Notes may create and sync content in the selected account. Close unrelated
 documents, inspect the current app, and adjust locators when necessary. Format
-validation in CI is not evidence that these real-app workflows have replayed
+validation is not evidence that these real-app workflows have replayed
 successfully on your macOS version.

@@ -27,19 +27,16 @@ swift build
 swift test
 ```
 
-The URL above is the intended public home. Until the repository is published,
-work from the source checkout you received instead.
-
 All runtime dependency sources are checked in under `Vendor/Yams` with their
 licenses. A checked-out source tree builds without dependency downloads once
-the Swift toolchain is installed. Run the same clean, network-denied check as
-CI with `bash ./scripts/check-offline-build.sh`; it uses a temporary build/cache
+the Swift toolchain is installed. Run the clean, network-denied local check
+with `bash ./scripts/check-offline-build.sh`; it uses a temporary build/cache
 directory and does not replay workflows against real applications.
 
 Run the development UI with:
 
 ```bash
-swift run ActionTape
+swift run ActionTapeStudio
 ```
 
 See the CLI surface that your checkout actually provides with:

@@ -20,7 +20,8 @@ truth for the exact current surface.
 - **Available:** native Studio tape library, YAML import/export, replay, live
   trace timeline, trace export, and semantic click recording.
 - **Available:** native in-memory Practice app and a synthetic first-run tape.
-- **Available:** Swift build/test CI, examples, privacy guidance, and local
+- **Available:** Swift build/test scripts and a GitHub Actions configuration,
+  examples, privacy guidance, and local
   development app packaging with bundled resources, icons, and licenses.
 - **Available:** vendored Yams/libyaml and a clean network-denied build/test check.
 

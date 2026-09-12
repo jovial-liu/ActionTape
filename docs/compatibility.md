@@ -51,8 +51,9 @@ compatibility escape hatch. It is omitted from repository examples.
 
 ## What automated checks establish
 
-CI builds Studio, Practice, and the CLI, runs model/CLI/driver-fixture tests, validates the
-example YAML files, and verifies `.app` resources and metadata. Those checks do
+The automated scripts build Studio, Practice, and the CLI, run model/CLI/driver
+fixture tests, validate example YAML files, and verify `.app` resources and
+metadata. Those checks do
 not replay Finder, Notes, or TextEdit and do not establish UI compatibility.
 
 In particular, Finder's `AXOutline` example assumes a list-view Accessibility

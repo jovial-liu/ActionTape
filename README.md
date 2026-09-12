@@ -21,6 +21,10 @@ The same readable YAML runs from the command line.
 Think **Playwright for your Mac**: semantic actions, explicit assertions, and
 failures you can inspect. No account or model API is needed.
 
+![ActionTape Studio showing an editable workflow and a real, uniquely matched Practice button](docs/assets/studio.jpg)
+
+*The running macOS app, inspecting the included Practice workflow.*
+
 > [!NOTE]
 > **v0.1.0 is a source preview.** Build it locally with Swift 6 on macOS 14+.
 > The packaging scripts produce development apps for your Mac's architecture;
@@ -98,8 +102,8 @@ buttons. Add text and shortcut steps manually afterward. See the
 [Studio guide](docs/studio-guide.md).
 
 Yams 6.2.2 and libyaml are [vendored with their licenses](Vendor/Yams/NOTICE.md).
-An existing checkout builds without dependency downloads. CI repeats this in a
-clean build directory with network access denied:
+An existing checkout builds without dependency downloads. The offline check
+repeats this in a clean build directory with network access denied:
 
 ```bash
 bash scripts/check-offline-build.sh
@@ -194,9 +198,9 @@ or Accessibility-tree diffs.
 Accessibility quality varies between apps, versions, and languages. Custom-drawn
 controls may expose no usable semantics. Practice provides a controlled first
 example; the [Finder, TextEdit, and Notes examples](examples/README.md) are format
-demonstrations that may need adjustment for your setup. CI verifies source,
-fixtures, example formats, and app assembly; it does not run a broad desktop
-compatibility matrix.
+demonstrations that may need adjustment for your setup. Automated checks verify
+source, fixtures, example formats, and app assembly; they do not run a broad
+desktop compatibility matrix.
 
 Accessibility access is broad. Review a tape as you would a script: it can change
 another app or trigger that app's network activity. Tape files are plaintext,

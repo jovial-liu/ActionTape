@@ -83,6 +83,9 @@ count, roles, identifiers, labels, scores, and scoring explanations. Inspection
 does not press controls or assign values. It reports unique, missing, and
 ambiguous outcomes, requests only variables used by the target or locator, and
 can be cancelled. Use it to understand a locator before replaying the action.
+Supplied secret-variable values are redacted from diagnostics. This is not
+automatic detection of every secret in an app: accessible labels and
+descriptions can still contain private document or account information.
 
 Each timeline step shows its status and, after execution, duration and attempts.
 Select a failed step to inspect its error and locator. Missing or ambiguous
