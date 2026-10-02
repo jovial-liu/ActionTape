@@ -28,6 +28,8 @@ failures you can inspect. No account or model API is needed.
 
 > [!NOTE]
 > **v0.1.0 is a source preview.** Build it locally with Swift 6 on macOS 14+.
+> An optional [Apple Silicon development preview](https://github.com/jovial-liu/ActionTape/releases/tag/v0.1.0)
+> includes Studio, Practice, the CLI, examples, and a SHA-256 checksum.
 > The packaging scripts produce development apps for your Mac's architecture;
 > they do not add a Developer ID signature or notarization. See the
 > [release notes](docs/releases/v0.1.0.md) for current limitations.
